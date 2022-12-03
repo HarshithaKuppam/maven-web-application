@@ -4,4 +4,5 @@
   - name: copying war file to webapps directory
     copy: 
       src: target/maven-web-application.war
-      dest: /usr/local/tomcat/webapps
+      dest: /opt/tomcat9/webapps
+      
