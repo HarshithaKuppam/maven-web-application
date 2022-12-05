@@ -1,7 +1,7 @@
 - hosts: appServers
   become: true
   tasks:
-  - name: copying war file to webapps directory
+  - name: Deploying war file to tomcat
     copy: 
       src: target/maven-web-application.war
       dest: /opt/tomcat9/webapps
