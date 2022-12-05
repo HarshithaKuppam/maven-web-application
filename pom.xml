@@ -98,13 +98,13 @@
 	
 	    <repository>
 	      <id>jfrog</id>
-	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://54.154.184.204:8082/artifactory/result/</url>
+	      <name>Releases Jfrog Repository</name>
+	      <url>http://54.77.131.145:8081/artifactory/result/</url>
 	    </repository>
 	    
 	    <!-- <snapshotRepository>
 	      <id>nexus</id>
-	      <name>Mithun Technologies Snapshot Nexus Repository </name>
+	      <name>Snapshot Nexus Repository </name>
 	      <url>http://54.255.174.111:8081/repository/flipkart-snapshot/</url>
 	    </snapshotRepository> -->
 	    
