@@ -34,15 +34,15 @@ out.println("Server Host Name :: "+inetAddress.getHostName());
 		Whitefield,
 		Bangalore,
 		<br>
-		// <a href="mailto:devopstrainingblr@gmail.com">Mail to Mithun Technologies</a>
+		<a href=""> </a>
 	</span>
 </div>
 <hr>
 	<p> Service : <a href="services/employee/getEmployeeDetails">Get Employee Details </p>
 <hr>
 <hr>
-<p align=center>Mithun Technologies - Consultant, Training, Development Center.</p>
-<p align=center><small>Copyrights 2019 by <a href="http://mithuntechnologies.com/">Mithun Technologies</a> </small></p>
+<p align=center></p>
+<p align=center><small>Copyrights 2019 by <a href="</a> </small></p>
 
 </body>
 </html>
