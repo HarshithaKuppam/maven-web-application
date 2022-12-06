@@ -24,7 +24,6 @@
 		<!-- <sonar.host.url>https://sonarcloud.io/</sonar.host.url>
 		<sonar.login>23ce701f7cf5d0962d7775091f62fb81315808e2</sonar.login>-->
 		<sonar.organization>harshithak</sonar.organization>
-		<!-- <sonar.password>H@rshihari03</sonar.password>  -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -99,7 +98,7 @@
 	    <repository>
 	      <id>jfrog</id>
 	      <name>Releases Jfrog Repository</name>
-	      <url>http://54.75.36.118:8081/artifactory/result/</url>
+	      <url>http://54.247.63.68:8081/artifactory/result/</url>
 	    </repository>
 	    
 	    <!-- <snapshotRepository>
