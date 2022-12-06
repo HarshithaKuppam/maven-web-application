@@ -2,14 +2,14 @@
   become: true
   tasks:
   - name: Downloading artifacts from jfrog server
-    get_url: 
-      url: http://54.75.2.186:8081/artifactory/result/
+    #get_url: 
+     # url: http://54.75.2.186:8081/artifactory/result/
+      #dest: /opt/tomcat9/webapps
+      #mode: 0755
+      #url_username: admin
+      #url_password: H@rshihari03 
+  - name: Deploying war file to tomcat
+    copy: 
+      src: target/maven-web-application.war
       dest: /opt/tomcat9/webapps
-      mode: 0755
-      url_username: admin
-      url_password: H@rshihari03 
-  #- name: Deploying war file to tomcat
-   # copy: 
-    #  src: target/maven-web-application.war
-     # dest: /opt/tomcat9/webapps
       
