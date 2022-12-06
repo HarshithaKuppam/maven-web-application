@@ -98,7 +98,7 @@
 	    <repository>
 	      <id>jfrog</id>
 	      <name>Releases Jfrog Repository</name>
-	      <url>http://54.170.173.154:8081/artifactory/result/</url>
+	      <url>http://54.75.2.186:8081/artifactory/result/</url>
 	    </repository>
 	    
 	    <!-- <snapshotRepository>
