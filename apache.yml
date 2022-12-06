@@ -3,7 +3,7 @@
   tasks:
   - name: Downloading artifacts from jfrog server
     get_url: 
-      url: http://54.170.173.154:8081/artifactory/result/
+      url: http://54.75.2.186:8081/artifactory/result/
       dest: /opt/tomcat9/webapps
       mode: 0755
       url_username: admin
