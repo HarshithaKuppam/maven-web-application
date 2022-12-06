@@ -3,7 +3,8 @@
   tasks:
   - name: Downloading artifacts from jfrog server
     get_url: 
-      url: http://54.75.2.186:8081/artifactory/result/
+      #url: http://54.75.2.186:8081/artifactory/result/
+      url: http://54.75.2.186:8082/ui/native/result/com/mt/maven-web-application/0.0.1-SNAPSHOT/
       dest: /opt/tomcat9/webapps
       mode: 0755
       url_username: admin
