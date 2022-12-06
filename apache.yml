@@ -1,15 +1,15 @@
 - hosts: appServers
   become: true
   tasks:
-  #- name: Downloading artifacts from jfrog server
-    #get_url: 
-     # url: http://54.75.2.186:8081/artifactory/result/
-      #dest: /opt/tomcat9/webapps
-      #mode: 0755
-      #url_username: admin
-      #url_password: H@rshihari03 
-  - name: Deploying war file to tomcat
-    copy: 
-      src: target/maven-web-application.war
+  - name: Downloading artifacts from jfrog server
+    get_url: 
+      url: http://54.75.2.186:8081/artifactory/result/
       dest: /opt/tomcat9/webapps
+      mode: 0755
+      url_username: admin
+      url_password: APJFYfmnijGGncub5t54SY4p5j 
+  #- name: Deploying war file to tomcat
+   # copy: 
+    #  src: target/maven-web-application.war
+     # dest: /opt/tomcat9/webapps
       
