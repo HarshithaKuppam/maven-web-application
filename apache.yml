@@ -3,15 +3,15 @@
   tasks:
     - name: "Download war file"
       maven_artifact:
-      group_id: com.mt
-      artifact_id: maven-web-application
-      extension: war
-      version: 1.0.0
-      repository_url: "http://34.251.138.104:8081/repository/Release_Repository/"
-      username: admin
-      password: H@rshihari03
-      dest: '/tmp/maven-web-application-1.0.0.war'
-      mode: '0644'
+        group_id: com.mt
+        artifact_id: maven-web-application
+        extension: war
+        version: 1.0.0
+        repository_url: "http://34.251.138.104:8081/repository/Release_Repository/"
+        username: admin
+        password: H@rshihari03
+        dest: '/tmp/maven-web-application-1.0.0.war'
+        mode: '0644'
     - name: "copy war file to webapps"
       copy: 
         src: /tmp/maven-web-application-1.0.0.war
