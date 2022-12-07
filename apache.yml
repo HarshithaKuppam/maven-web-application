@@ -10,7 +10,6 @@
         artifact_format: "war"
         target: "/tmp/maven-web-application-1.0.0.war"
         repository: "Release_Repository"
-      ignore_errors: true
    - name: copy war file to webapps
      copy: 
        src: "/tmp/maven-web-application-1.0.0.war"
