@@ -3,8 +3,8 @@
   tasks:
    - name: Downloading artifacts from Nexus server
      get_url: 
-       url: http://34.251.138.104:8081/repository/Snapshot_Repository/
-       dest: /tmp/
+       url: http://34.251.138.104:8081/repository/Release_Repository/
+       dest: /tmp/maven-web-application.war
        mode: 0777
        url_username: "{{admin_username}}"
        url_password: "{{admin_password}}"
