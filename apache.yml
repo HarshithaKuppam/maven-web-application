@@ -6,7 +6,7 @@
       url: http://34.251.138.104:8081/repository/Snapshot_Repository/
       #url: http://34.251.138.104:8081/repository/Snapshot_Repository/com/mt/maven-web-application/0.0.1-SNAPSHOT/*.war
       dest: /opt/tomcat9/webapps/
-      mode: 0755
+      mode: 0777
       url_username: "{{admin_username}}"
       url_password: "{{admin_password}}"
   - name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
