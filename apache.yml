@@ -1,41 +1,5 @@
-- hosts: appServers
-  become: true
-  tasks:
-  #- name: Install lxml
-   # pip: name=lxml
-  - name: remove war file from temp folder
-    shell: rm -rf /tmp/maven-web-application.war
-  - name: "Download war file"
-    maven_artifact:
-      group_id: com.mt
-      artifact_id: maven-web-application
-      extension: war
-      version: 1.0.0
-      repository_url: "http://34.251.138.104:8081/repository/Release_Repository/" 
-      username: admin
-      password: H@rshihari03
-      dest: "/tmp/maven-web-application.war"
-      mode: '0644'
-  - name: Install OpenJDK
-    yum:
-      name: java-11-openjdk-devel
-  - name: download tomcat server packages
-    get_url:
-      url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
-      dest: /usr/local
-  - name: extract tomcat packages
-    unarchive:
-      src: /usr/local/apache-tomcat-10.0.27.tar.gz
-      dest: /usr/local
-      remote_src: yes
-  - name: Copy the war file
-    copy:
-      src: /tmp/maven-web-application.war
-      dest: /usr/local/apache-tomcat-10.0.27/webapps/
-      remote_src: yes
-  - name: Stop tomcat services
-    shell: /usr/local/apache-tomcat-10.0.27/bin/shutdown.sh
-
-  - name: Start Tomcat
-    shell: nohup /usr/local/apache-tomcat-10.0.27/bin/startup.sh
-
+tasks:
+  - name: Deploying war file to tomcat
+    copy: 
+      src: target/maven-web-application.war
+      dest: /usr/local/apache-tomcat-10.0.27/webapps
