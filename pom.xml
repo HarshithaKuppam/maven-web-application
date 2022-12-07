@@ -96,16 +96,16 @@
 	<distributionManagement>
 	
 	    <repository>
-	      <id>jfrog</id>
-	      <name>Releases Jfrog Repository</name>
-	      <url>http://54.75.2.186:8081/artifactory/result/</url>
+	      <id>nexus</id>
+	      <name>Releases Nexus Repository</name>
+	      <url>http://34.251.138.104:8081/repository/Release_Repository/</url>
 	    </repository>
 	    
-	    <!-- <snapshotRepository>
+	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Snapshot Nexus Repository </name>
-	      <url>http://54.255.174.111:8081/repository/flipkart-snapshot/</url>
-	    </snapshotRepository> -->
+	      <url>http://34.251.138.104:8081/repository/Snapshot_Repository/</url>
+	    </snapshotRepository>
 	    
 	</distributionManagement>
 	
