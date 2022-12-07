@@ -1,17 +1,17 @@
 - hosts: appServers
   become: true
   tasks:
-  - name: Downloading artifacts from Nexus server
-    maven_artifact:
-      group_id: com.mt
-      artifact_id: maven-web-application
-      repository_url: 'http://34.251.138.104:8081/repository/Release_Repository/'
-      version: 1.0.0
-      extension: war
-      username: admin
-      password: H@rshihari03
-      mode: 0777
-      dest: '/opt/tomcat9/webapps/maven-web-application-1.0.0.war'
+    - name: "Download war file"
+      maven_artifact:
+        group_id: com.mt
+        artifact_id: maven-web-application
+        extension: war
+        version: 1.0.0
+        repository_url: "http://34.251.138.104:8081/repository/Release_Repository/"
+        username: admin
+        password: H@rshihari03
+        dest: '/opt/tomcat9/webapps/maven-web-application-1.0.0.war'
+        mode: '0644'
   #- name: Downloading artifacts from Nexus server
    # get_url: 
     #  url: http://34.251.138.104:8081/repository/Snapshot_Repository/
