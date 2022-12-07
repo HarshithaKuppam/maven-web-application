@@ -1,29 +1,18 @@
 - hosts: appServers
   become: true
   tasks:
-    - name: "Download war file"
-      maven_artifact:
-        group_id: com.mt
-        artifact_id: maven-web-application
-        extension: war
-        version: 1.0.0
-        repository_url: "http://34.251.138.104:8081/repository/Release_Repository/"
-        username: admin
-        password: H@rshihari03
-        dest: '/tmp/maven-web-application-1.0.0.war'
-        mode: '0644'
-    - name: "copy war file to webapps"
-      copy: 
-        src: /tmp/maven-web-application-1.0.0.war
-        dest: /opt/tomcat9/webapps/
-        #- name: Downloading artifacts from Nexus server
-         # get_url: 
-          #url: http://34.251.138.104:8081/repository/Snapshot_Repository/
-      #url: http://34.251.138.104:8081/repository/Snapshot_Repository/com/mt/maven-web-application/0.0.1-SNAPSHOT/*.war
-          #dest: /opt/tomcat9/webapps/
-          #mode: 0777
-          #url_username: "{{admin_username}}"
-          #url_password: "{{admin_password}}"
+   - name: Downloading artifacts from Nexus server
+     get_url: 
+       url: http://34.251.138.104:8081/repository/Snapshot_Repository/
+       dest: /tmp/maven-web-application-1.0.0.war
+       mode: 0777
+       url_username: "{{admin_username}}"
+       url_password: "{{admin_password}}"
+   - name: "copy war file to webapps"
+     copy: 
+       src: /tmp/maven-web-application-1.0.0.war
+       dest: /opt/tomcat9/webapps/
+
  
 
   #- name: Deploying war file to tomcat
