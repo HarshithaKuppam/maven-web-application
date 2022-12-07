@@ -4,4 +4,4 @@
   - name: Deploying war file to tomcat
     copy: 
       src: target/maven-web-application.war
-      dest: /usr/local/apache-tomcat-10.0.27/webapps
+      dest: /opt/tomcat9/webapps
