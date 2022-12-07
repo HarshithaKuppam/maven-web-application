@@ -12,6 +12,7 @@
      copy: 
        remote_src: "/tmp/maven-web-application-1.0.0.war"
        dest: /opt/tomcat9/webapps/
+       mode: 0777
 
  
 
