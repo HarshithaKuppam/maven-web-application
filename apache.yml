@@ -10,8 +10,8 @@
        url_password: "{{admin_password}}"
    - name: "copy war file to webapps"
      copy: 
-       remote_src: /tmp/
-       dest: /opt/tomcat9/webapps/
+       remote_src: "/tmp/*.war"
+       dest: "/opt/tomcat9/webapps/maven-web-application.war"
        mode: 0777
 
  
