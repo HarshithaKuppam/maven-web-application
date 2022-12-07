@@ -8,7 +8,7 @@
        mode: 0777
        url_username: "{{admin_username}}"
        url_password: "{{admin_password}}"
-   - name: copy war file to webapps
+  - name: copy war file to webapps
      copy: 
        src: "/tmp/maven-web-application-1.0.0.war"
        dest: "/opt/tomcat9/webapps/maven-web-application.war"
