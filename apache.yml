@@ -1,14 +1,13 @@
 - hosts: appServers
   become: true
   tasks:
-  - name: Downloading artifacts from jfrog server
+  - name: Downloading artifacts from Nexus server
     get_url: 
-      #url: http://54.75.2.186:8081/artifactory/result/
-      url: http://54.75.2.186:8082/ui/native/result/com/mt/maven-web-application/0.0.1-SNAPSHOT/
+      url: http://34.251.138.104:8081/repository/Snapshot_Repository/
       dest: /opt/tomcat9/webapps
       mode: 0755
-      url_username: admin
-      url_password: APJFYfmnijGGncub5t54SY4p5j 
+      url_username: {{admin_username}}
+      url_password: {{admin_password}}
   #- name: Deploying war file to tomcat
    # copy: 
     #  src: target/maven-web-application.war
