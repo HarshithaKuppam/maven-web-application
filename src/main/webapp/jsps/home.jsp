@@ -9,7 +9,7 @@
 </head>
 </head>
 <body>
-<h1 align="center">Welcome to LTI. Deployment Demo 1</h1>
+<h1 align="center">Welcome to LTI. Deployment Demo 2</h1>
 <h1 align="center"> Bangalore, Karnataka</h1>
 <hr>
 <br>
