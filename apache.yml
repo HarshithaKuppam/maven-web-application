@@ -4,13 +4,13 @@
    - name: Downloading artifacts from Nexus server
      get_url: 
        url: http://34.251.138.104:8081/repository/Snapshot_Repository/
-       dest: /tmp/maven-web-application-1.0.0.war
+       dest: /tmp/
        mode: 0777
        url_username: "{{admin_username}}"
        url_password: "{{admin_password}}"
    - name: "copy war file to webapps"
      copy: 
-       remote_src: "/tmp/maven-web-application-1.0.0.war"
+       remote_src: "/tmp/
        dest: /opt/tomcat9/webapps/
        mode: 0777
 
