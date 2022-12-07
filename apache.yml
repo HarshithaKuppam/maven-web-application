@@ -6,9 +6,11 @@
     group_id: com.mt
     artifact_id: maven-web-application
     repository_url: 'http://34.251.138.104:8081/repository/Snapshot_Repository/'
-    username: "{{admin_username}}"
-    password: "{{admin_password}}
-    dest: /opt/tomcat9/webapps/*.war
+    extension: war
+    username: admin
+    password: H@rshihari03
+    mode: 0777
+    dest: /opt/tomcat9/webapps/maven-web-application-0.0.1.war
   #- name: Downloading artifacts from Nexus server
    # get_url: 
     #  url: http://34.251.138.104:8081/repository/Snapshot_Repository/
