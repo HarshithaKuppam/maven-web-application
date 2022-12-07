@@ -2,4 +2,4 @@
 
 # 52.50.106.148 ansible_user=ec2-user
 
-172.31.41.124 ansible_python_interpreter="/usr/bin/python3"
+172.31.34.47 ansible_python_interpreter="/usr/bin/python3"
