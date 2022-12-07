@@ -6,8 +6,8 @@
       url: http://34.251.138.104:8081/repository/Snapshot_Repository/
       dest: /opt/tomcat9/webapps
       mode: 0755
-      url_username: {{admin_username}}
-      url_password: {{admin_password}}
+      url_username: "{{admin_username}}"
+      url_password: "{{admin_password}}"
   #- name: Deploying war file to tomcat
    # copy: 
     #  src: target/maven-web-application.war
