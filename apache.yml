@@ -1,24 +1,8 @@
 - hosts: appServers
   become: true
   tasks:
-   - name: Downloading artifacts from Nexus server
-     get_url: 
-       url: http://34.251.138.104:8081/repository/Release_Repository/
-       dest: /tmp/maven-web-application-1.0.0.war
-       mode: 0777
-       url_username: "{{admin_username}}"
-       url_password: "{{admin_password}}"
-   - name: copy war file to webapps
-     copy: 
-       src: "/tmp/maven-web-application-1.0.0.war"
-       dest: "/opt/tomcat9/webapps/maven-web-application.war"
-       mode: 0777
-       remote_src: yes
-
- 
-
-  #- name: Deploying war file to tomcat
-   # copy: 
-    #  src: target/maven-web-application.war
-     # dest: /opt/tomcat9/webapps
+  - name: Deploying war file to tomcat
+    copy: 
+      src: target/maven-web-application.war
+      dest: /opt/tomcat9/webapps
       
