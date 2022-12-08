@@ -10,7 +10,7 @@
       group_id: com.mt
       artifact_id: maven-web-application
       extension: war
-      version: '${pomversion}'
+      version: '{{pomversion}}'
       repository_url: "http://54.77.243.106:8081/repository/Snapshot_Repository/" 
       username: admin
       password: H@rshihari03
