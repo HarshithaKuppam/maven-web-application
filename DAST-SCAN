@@ -1,0 +1,60 @@
+node{
+
+
+stage('Pulling latest Owasp Zap Image'){
+    
+    echo "pulling latest owaspzap image"
+    
+     sshagent(['zap']) {
+        
+        sh 'ssh -o StrictHostKeyChecking=no ubuntu@34.250.60.4 "docker pull owasp/zap2docker-stable" '
+     }
+}
+stage('CREATING OWASP ZAP CONTAINER'){
+     
+    sshagent(['zap']) {
+        
+        
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@34.250.60.4 docker rm -f owaspcontainer1 || true'
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@34.250.60.4 "docker run -dt --name owaspcontainer1 -p 8080:8080 owasp/zap2docker-stable /bin/bash" '
+}
+}
+
+stage('creating directory'){
+    
+   sshagent(['zap']) {
+     
+     sh 'ssh -o StrictHostKeyChecking=no ubuntu@34.250.60.4 "docker exec owaspcontainer1 mkdir /zap/wrk"' 
+    
+}
+}
+stage('SCANNING APPLICATION ON OWASPCONTAINER'){
+    
+     sshagent(['zap']) {
+     
+     sh 'ssh -o StrictHostKeyChecking=no ubuntu@34.250.60.4 "docker exec owaspcontainer1 zap-baseline.py -t http://54.77.178.252:8080/maven-web-application -x report.xml -I" '  
+         
+     }
+}
+
+stage('COPYING REPORTS FROM CONTAINER TO SYSTEM'){
+    
+    echo "workspace is ${WORKSPACE}"
+     sshagent(['zap']) {
+     
+     sh 'ssh -o StrictHostKeyChecking=no ubuntu@34.250.60.4 "docker cp owaspcontainer1:/zap/wrk/report.xml /tmp/report.xml" '
+    
+}
+}
+
+stage('Stop and Remove Container'){
+
+
+sshagent(['zap']) {
+ sh 'ssh -o StrictHostKeyChecking=no ubuntu@34.250.60.4 docker stop owaspcontainer1 '
+ sh 'ssh -o StrictHostKeyChecking=no ubuntu@34.250.60.4 docker rm owaspcontainer1 '
+}
+}
+
+
+} //node
