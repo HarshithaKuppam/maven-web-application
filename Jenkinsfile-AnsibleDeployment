@@ -1,0 +1,100 @@
+node{
+    
+    def mavenHome= tool name: "Maven3.6.3"
+    stage ('CheckOut the code from Git'){
+        
+        git credentialsId: 'GIT_CREDENTIALS', url: 'https://github.com/HarshithaKuppam/maven-web-application.git'
+    }
+     
+    stage('Build Maven Package'){
+       
+            sh " ${mavenHome}/bin/mvn clean package"
+      }
+    stage('Execute SQ Report'){
+        
+        withSonarQubeEnv(credentialsId: 'SQ_SERVER_TOKEN',installationName: 'NewSonarQubeServer') {
+    
+          sh " ${mavenHome}/bin/mvn sonar:sonar"
+     }
+     }
+
+    stage('Source Composition Analysis'){
+
+
+        sh 'rm owasp* || true'
+        
+        sh 'wget "https://raw.githubusercontent.com/HarshithaKuppam/maven-web-application/master/owasp-dependency-check.sh" '
+        sh 'chmod +x owasp-dependency-check.sh'
+        sh ' bash owasp-dependency-check.sh'
+        // sh 'cat /var/lib/jenkins/workspace/jenkins-maven/dependency-check-report.xml'
+     
+      }
+      
+    stage('Upload Artifact Into Nexus') {
+         
+               readpom = readMavenPom file: 'pom.xml';
+               pomversion = readpom.version;
+               echo "${pomversion}"
+     
+         nexusArtifactUploader artifacts: [
+            [
+                artifactId: 'maven-web-application', 
+                classifier: '', 
+                file: "target/maven-web-application-${pomversion}.war", 
+                type: 'war'
+            ]
+        ], 
+        credentialsId: 'nexus',
+        groupId: 'com.mt', 
+        nexusUrl: '34.247.66.114:8081', 
+        nexusVersion: 'nexus3', 
+        protocol: 'http', 
+        repository: 'Snapshot_Repository', 
+        version: "${pomversion}"
+    } 
+    
+    stage('Execute Ansible Playbook for Deployment of App In Tomcat Server'){
+         echo "${pomversion}"
+        ansiblePlaybook credentialsId: 
+        'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'apache.yml', extras: "-e version=${pomversion}"  
+        }
+        
+    stage('CREATING OWASP ZAP CONTAINER'){
+     
+         sshagent(['zap']) {
+        
+        sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.250.70.241 docker rm -f owaspcontainer1 || true'
+        sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.250.70.241 "docker run -dt --name owaspcontainer1 -p 8080:8080 owasp/zap2docker-stable /bin/bash" '
+       }
+     }
+
+    stage('creating directory'){
+    
+          sshagent(['zap']) {
+     
+           sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.250.70.241 "docker exec owaspcontainer1 mkdir /zap/wrk"' 
+    
+               }
+     }
+    stage('SCANNING APPLICATION ON OWASPCONTAINER'){
+    
+     sshagent(['zap']) {
+     
+     sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.250.70.241 "docker exec owaspcontainer1 zap-baseline.py -t http://54.216.70.229:8080/maven-web-application -x report.xml  -I" '  
+     } 
+     }
+
+    stage('COPYING REPORTS FROM CONTAINER TO SYSTEM'){
+    
+     sshagent(['zap']) {
+          sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.250.70.241 "docker cp owaspcontainer1:/zap/wrk/report.xml /tmp/report.xml" '
+              }
+      }
+
+    stage('Stop and Remove Container'){
+        sshagent(['zap']) {
+        sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.250.70.241 docker stop owaspcontainer1 '
+           sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.250.70.241 docker rm owaspcontainer1 '
+      }
+       }  
+    } // node closing
