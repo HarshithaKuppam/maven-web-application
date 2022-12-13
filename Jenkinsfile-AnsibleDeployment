@@ -98,3 +98,13 @@ node{
       }
        }  
     } // node closing
+    
+    
+   /* To do with Build with Parametrs for passing version of application as input
+    
+    stage('Execute Ansible Playbook for Deployment of App In Tomcat Server'){
+         echo "${pomversion}"
+        ansiblePlaybook credentialsId: 
+        'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'apache.yml', extras: '-e version="${VersionToDeploy}"'  
+        } */
+          
