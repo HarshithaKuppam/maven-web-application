@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "${HOME}"
+echo "$WORKSPACE"
 DC_VERSION="latest"
 DC_DIRECTORY=$HOME/OWASP-Dependency-Check
 DC_PROJECT="dependency-check scan: $(pwd)"
@@ -28,6 +30,6 @@ docker run --rm \
     --scan /src \
     --format "ALL" \
     --project "$DC_PROJECT" \
-    --out "${HOME}/OWASP-Dependency-Check"
+    --out "/var/lib/jenkins/workspace/jenkins-maven/odc-reports"
     # Use suppression like this: (where /src == $pwd)
     # --suppression "/src/security/dependency-check-suppression.xml"
