@@ -30,6 +30,6 @@ docker run --rm \
     --scan /src \
     --format "ALL" \
     --project "$DC_PROJECT" \
-    --out "/var/lib/jenkins/workspace/jenkins-maven/odc-reports/"
+    --out
     # Use suppression like this: (where /src == $pwd)
     # --suppression "/src/security/dependency-check-suppression.xml"
