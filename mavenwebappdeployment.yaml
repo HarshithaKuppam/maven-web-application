@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: mavenwebappcontainer
-        image: kuppamdocker/maven-web-application:13
+        image: kuppamdocker/maven-web-application:#BUILD_NUMBER
         ports:
         - containerPort: 8080
 ---
