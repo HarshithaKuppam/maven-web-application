@@ -11,7 +11,7 @@
       artifact_id: maven-web-application
       extension: war
       version: '{{ version }}'
-      repository_url: "http://34.247.66.114:8081/repository/Snapshot_Repository/" 
+      repository_url: "http://34.244.151.165:8081/repository/Snapshot_Repository/" 
       username: admin
       password: H@rshihari03
       dest: "/tmp/maven-web-application.war"
