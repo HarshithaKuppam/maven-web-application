@@ -45,8 +45,8 @@ node{
     
   stage('Deploy app in qa k8 cluster'){
   
-       withKubeConfig([credentialsId: 'kubeconfignew',serverUrl: 'https://F8F89E0C03D25C3DA3B78EE8B5E8F91F.yl4.eu-west-1.eks.amazonaws.com',contextName: 'qacluster',clusterName: 'EKS_NewCluster']) {
-      sh 'kubectl apply -f  mavenwebappdeployment.yaml'
+       kubeConfig([credentialsId: 'kubeconfignew',serverUrl: 'https://F8F89E0C03D25C3DA3B78EE8B5E8F91F.yl4.eu-west-1.eks.amazonaws.com',contextName: 'qacluster',clusterName: 'EKS_NewCluster']) {
+      sh ('kubectl apply -f  mavenwebappdeployment.yaml')
     }
     
   }
