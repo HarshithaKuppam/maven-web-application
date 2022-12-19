@@ -1,0 +1,43 @@
+node{
+    
+    def mavenHome= tool name: "Maven3.6.3"
+    def buildnumber= BUILD_NUMBER
+    stage ('Git CheckOut'){
+        
+        git branch: 'master', url: 'https://github.com/HarshithaKuppam/maven-web-application.git'
+    }
+    stage('build maven package'){
+        
+        sh " ${mavenHome}/bin/mvn clean package "
+    }
+    stage('Build Docker Image'){
+        
+        sh " docker build -t kuppamdocker/maven-web-application:${buildnumber} ."
+    }
+    
+    stage('Docker Login and Push'){
+        
+       withCredentials([usernameColonPassword(credentialsId: 'Docker_Hub_Pwd', variable: 'Docker_Hub_Pwd')]) {
+       sh "docker login -u kuppamdocker -p H@rshihari03 "
+    }
+           
+         sh "docker push kuppamdocker/maven-web-application:${buildnumber}"
+    }
+    
+    stage('Removing Local Image'){
+        
+        sh " docker rmi -f kuppamdocker/maven-web-application:${buildnumber}"
+    }
+    
+   stage('Replacing tag in manifest file'){
+        
+        sh " sed -i 's/#BUILD_NUMBER/${buildnumber}/' mavenwebappdeployment.yaml"
+        
+    }
+    
+    stage('Deploy app in k8 cluster'){
+        
+        
+        sh " kubectl apply -f mavenwebappdeployment.yaml"
+    }
+} //node closing
