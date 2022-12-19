@@ -35,12 +35,11 @@ node{
         
     }
     
-    stage('Deploy app in k8 cluster'){
-        
-        
-       kubeconfig(credentialsId: 'kubeconfig', serverUrl: 'https://79F13A2FF679E5A8D118AD8C68E34329.gr7.eu-west-1.eks.amazonaws.com') {
-                                 sh ('kubectl apply -f  mavenwebappdeployment.yaml')
-
-}
+    stage('view config') {
+     withKubeConfig([credentialsId: 'kubeconfignew',serverUrl: '<api-server-address>',contextName: '<context-name>',clusterName: '<cluster-name>',namespace: '<namespace>']) {
+      sh 'kubectl config view'
     }
+  }
+
+
 } //node closing
