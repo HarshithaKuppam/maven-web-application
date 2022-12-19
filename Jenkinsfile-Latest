@@ -39,6 +39,7 @@ node{
     
        //withKubeConfig([credentialsId: 'kubeconfignew',serverUrl: 'https://79F13A2FF679E5A8D118AD8C68E34329.gr7.eu-west-1.eks.amazonaws.com',contextName: 'devcluster',clusterName: 'EKS_Demo']) {
       sh 'kubectl config use-context devcluster'
+      sh 'kubectl config current-context'
       sh 'kubectl apply -f  mavenwebappdeployment.yaml'
     
    // }
@@ -46,8 +47,9 @@ node{
     
   stage('Deploy app in qa k8 cluster'){
   
-      withKubeConfig([credentialsId: 'kubeconfignew',serverUrl: 'https://F8F89E0C03D25C3DA3B78EE8B5E8F91F.yl4.eu-west-1.eks.amazonaws.com',contextName: 'qacluster',clusterName: 'EKS_NewCluster']) {
+      //withKubeConfig([credentialsId: 'kubeconfignew',serverUrl: 'https://F8F89E0C03D25C3DA3B78EE8B5E8F91F.yl4.eu-west-1.eks.amazonaws.com',contextName: 'qacluster',clusterName: 'EKS_NewCluster']) {
        sh 'kubectl config use-context qacluster'
+       sh 'kubectl config current-context'
       sh 'kubectl apply -f  mavenwebappdeployment.yaml'
     }
     
