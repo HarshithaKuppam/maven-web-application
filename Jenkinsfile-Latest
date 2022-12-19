@@ -51,7 +51,7 @@ node{
        sh 'kubectl config use-context qacluster'
        sh 'kubectl config current-context'
       sh 'kubectl apply -f  mavenwebappdeployment.yaml'
-    }
+    //}
     
   }
 
