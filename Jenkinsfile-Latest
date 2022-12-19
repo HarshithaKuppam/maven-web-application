@@ -41,6 +41,7 @@ node{
       sh 'kubectl apply -f  mavenwebappdeployment.yaml'
     
     }
+    }
     
   stage('Deploy app in qa k8 cluster'){
   
@@ -49,6 +50,5 @@ node{
     }
     
   }
-
 
 } //node closing
