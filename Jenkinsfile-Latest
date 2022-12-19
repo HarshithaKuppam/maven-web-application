@@ -35,13 +35,13 @@ node{
         
     }
     
-    stage('Deploy app in dev k8 cluster'){
+   /* stage('Deploy app in dev k8 cluster'){
     
        withKubeConfig([credentialsId: 'kubeconfignew',serverUrl: 'https://79F13A2FF679E5A8D118AD8C68E34329.gr7.eu-west-1.eks.amazonaws.com',contextName: 'devcluster',clusterName: 'EKS_Demo']) {
       sh 'kubectl apply -f  mavenwebappdeployment.yaml'
     
     }
-    }
+    }*/
     
   stage('Deploy app in qa k8 cluster'){
   
