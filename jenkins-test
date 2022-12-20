@@ -40,7 +40,7 @@ node{
         [credentialsId: 'kubeconfig', serverUrl: 'https://79F13A2FF679E5A8D118AD8C68E34329.gr7.eu-west-1.eks.amazonaws.com'],
         [credentialsId: 'kubeconfig', contextName: 'devcluster']
     ]) {
-      sh 'kubectl config view'
+      sh 'kubectl apply -f  mavenwebappdeployment.yaml'
     }
   }
     }
