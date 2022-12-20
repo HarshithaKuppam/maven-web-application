@@ -27,10 +27,10 @@ node{
          sh "docker push kuppamdocker/maven-web-application-test:${pomversion}"
     }
     
-        stage('Removing Local Image'){
+        /* stage('Removing Local Image'){
         
         sh " docker rmi -f kuppamdocker/maven-web-application:${pomversion}"
-    }
+    }*/
     
     stage('Deploy app in dev k8 cluster'){
     
