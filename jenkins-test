@@ -37,8 +37,8 @@ node{
     
      stage('Dump merged config') {
     withKubeCredentials([
-        [credentialsId: 'kubeconfig', serverUrl: 'https://79F13A2FF679E5A8D118AD8C68E34329.gr7.eu-west-1.eks.amazonaws.com'],
-        [credentialsId: 'kubeconfig', contextName: 'devcluster']
+        [credentialsId: 'kubeconfignew', serverUrl: 'https://79F13A2FF679E5A8D118AD8C68E34329.gr7.eu-west-1.eks.amazonaws.com'],
+        [credentialsId: 'kubeconfignew', contextName: 'devcluster']
     ]) {
       sh 'kubectl apply -f  mavenwebappdeployment.yaml'
     }
