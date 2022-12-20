@@ -18,4 +18,12 @@ node{
         sh " docker build -t kuppamdocker/maven-web-application-test:${pomversion} ."
     }
     
+    stage('Docker Login and Push'){
+        
+       withCredentials([usernameColonPassword(credentialsId: 'Docker_Hub_Pwd', variable: 'Docker_Hub_Pwd')]) {
+       sh "docker login -u kuppamdocker -p H@rshihari03 "
+    }
+           
+         sh "docker push kuppamdocker/maven-web-application-test:${pomversion}"
+    }
     }
