@@ -26,4 +26,9 @@ node{
            
          sh "docker push kuppamdocker/maven-web-application-test:${pomversion}"
     }
+    
+        stage('Removing Local Image'){
+        
+        sh " docker rmi -f kuppamdocker/maven-web-application:${pomversion}"
+    }
     }
