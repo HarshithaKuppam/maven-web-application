@@ -15,7 +15,7 @@ node{
     }
     stage('Build Docker Image'){
         
-        sh " docker build -t kuppamdocker/maven-web-application-Test:${pomversion} ."
+        sh " docker build -t kuppamdocker/maven-web-application-test:${pomversion} ."
     }
     
     }
