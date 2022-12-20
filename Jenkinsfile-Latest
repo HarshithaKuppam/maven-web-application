@@ -1,7 +1,6 @@
 node{
     
     def mavenHome= tool name: "Maven3.6.3"
-    def mavenHome= tool name: "Maven3.6.3"
     readpom = readMavenPom file: 'pom.xml';
     pomversion = readpom.version;
     echo "${pomversion}"
