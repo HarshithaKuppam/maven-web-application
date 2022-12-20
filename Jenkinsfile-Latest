@@ -1,7 +1,10 @@
 node{
     
     def mavenHome= tool name: "Maven3.6.3"
-    def buildnumber= BUILD_NUMBER
+    def mavenHome= tool name: "Maven3.6.3"
+    readpom = readMavenPom file: 'pom.xml';
+    pomversion = readpom.version;
+    echo "${pomversion}"
     stage ('Git CheckOut'){
         
         git branch: 'master', url: 'https://github.com/HarshithaKuppam/maven-web-application.git'
@@ -12,7 +15,7 @@ node{
     }
     stage('Build Docker Image'){
         
-        sh " docker build -t kuppamdocker/maven-web-application:${buildnumber} ."
+        sh " docker build -t kuppamdocker/maven-web-application:${pomversion} ."
     }
     
     stage('Docker Login and Push'){
@@ -21,17 +24,17 @@ node{
        sh "docker login -u kuppamdocker -p H@rshihari03 "
     }
            
-         sh "docker push kuppamdocker/maven-web-application:${buildnumber}"
+         sh "docker push kuppamdocker/maven-web-application:${pomversion}"
     }
     
     stage('Removing Local Image'){
         
-        sh " docker rmi -f kuppamdocker/maven-web-application:${buildnumber}"
+        sh " docker rmi -f kuppamdocker/maven-web-application:${pomversion}"
     }
     
    stage('Replacing tag in manifest file'){
         
-        sh " sed -i 's/#BUILD_NUMBER/${buildnumber}/' mavenwebappdeployment.yaml"
+        sh " sed -i 's/#pomversion/${pomversion}/' mavenwebappdeployment.yaml"
         
     }
     
