@@ -1,0 +1,21 @@
+node{
+    
+    def mavenHome= tool name: "Maven3.6.3"
+    readpom = readMavenPom file: 'pom.xml';
+    pomversion = readpom.version;
+    echo "${pomversion}"
+    def buildnumber= BUILD_NUMBER
+    stage ('Git CheckOut'){
+        
+        git branch: 'master', url: 'https://github.com/HarshithaKuppam/maven-web-application.git'
+    }
+    stage('build maven package'){
+        
+        sh " ${mavenHome}/bin/mvn clean package "
+    }
+    stage('Build Docker Image'){
+        
+        sh " docker build -t kuppamdocker/maven-web-application:${pomversion} ."
+    }
+    
+    }
