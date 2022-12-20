@@ -31,4 +31,13 @@ node{
         
         sh " docker rmi -f kuppamdocker/maven-web-application:${pomversion}"
     }
+    
+    stage('Deploy app in dev k8 cluster'){
+    
+      sh 'kubectl config use-context devcluster'
+      sh 'kubectl config current-context'
+      sh 'kubectl apply -f  mavenwebappdeployment.yaml'
+
+    }
+    
     }
