@@ -29,7 +29,7 @@ node{
     
       stage('Removing Local Image'){
         
-        sh " docker rmi -f kuppamdocker/maven-web-application:${pomversion}"
+        sh " docker rmi -f kuppamdocker/maven-web-application-test:${pomversion}"
     }
     
      stage('Replacing tag in manifest file'){
