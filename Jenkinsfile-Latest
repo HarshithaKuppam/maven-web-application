@@ -45,12 +45,12 @@ node{
 
     }
     
-  stage('Deploy app in qa k8 cluster'){
+  /* stage('Deploy app in qa k8 cluster'){
   
        sh 'kubectl config use-context clustertwo'
        sh 'kubectl config current-context'
       sh 'kubectl apply -f  mavenwebappdeployment.yaml'
     
-  }
+  }*/
 
 } //node closing
