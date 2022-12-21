@@ -39,7 +39,7 @@ node{
     
    stage('Deploy app in dev k8 cluster'){
     
-      sh 'kubectl config use-context devcluster'
+      sh 'kubectl config use-context clusterone'
       sh 'kubectl config current-context'
       sh 'kubectl apply -f  mavenwebappdeployment.yaml'
 
@@ -47,7 +47,7 @@ node{
     
   stage('Deploy app in qa k8 cluster'){
   
-       sh 'kubectl config use-context qacluster'
+       sh 'kubectl config use-context clustertwo'
        sh 'kubectl config current-context'
       sh 'kubectl apply -f  mavenwebappdeployment.yaml'
     
