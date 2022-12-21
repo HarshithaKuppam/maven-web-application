@@ -37,13 +37,36 @@ node{
         
     }
     
-   stage('Deploy app in dev k8 cluster'){
+    
+    tage('Deploy app in EKS_cluster_One'){
+    
+      withKubeCredentials(kubectlCredentials: [[clusterName: 'EKS_Cluster_One', contextName: 'clusterone', credentialsId: 'KubeConfigFile', serverUrl: 'https://659F50812BCADA7D96733A9194707226.gr7.eu-west-1.eks.amazonaws.com']]) 
+                  {
+                  
+                  sh "kubectl apply -f mavenwebappdeployment.yaml"
+                 
+                  }
+
+            }
+            
+            stage('Deploy app in EKS_cluster_Two'){
+    
+      withKubeCredentials(kubectlCredentials: [[clusterName: 'EKS_Cluster_Two', contextName: 'clustertwo', credentialsId: 'KubeConfigFile', serverUrl: 'https://DA17855B5B87E559C60F62D99A44EBDE.gr7.eu-west-1.eks.amazonaws.com']]) 
+                  {
+                  sh "kubectl apply -f mavenwebappdeployment.yaml"
+                 
+                  }
+
+            }
+            } //node closing
+    
+  /* stage('Deploy app in dev k8 cluster'){
     
       sh 'kubectl config use-context clusterone'
       sh 'kubectl config current-context'
       sh 'kubectl apply -f  mavenwebappdeployment.yaml'
 
-    }
+    }*/
     
   /* stage('Deploy app in qa k8 cluster'){
   
@@ -53,4 +76,4 @@ node{
     
   }*/
 
-} //node closing
+
