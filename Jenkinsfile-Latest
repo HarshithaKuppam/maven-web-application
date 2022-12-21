@@ -38,7 +38,7 @@ node{
     }
     
     
-    tage('Deploy app in EKS_cluster_One'){
+    stage('Deploy app in EKS_cluster_One'){
     
       withKubeCredentials(kubectlCredentials: [[clusterName: 'EKS_Cluster_One', contextName: 'clusterone', credentialsId: 'KubeConfigFile', serverUrl: 'https://659F50812BCADA7D96733A9194707226.gr7.eu-west-1.eks.amazonaws.com']]) 
                   {
