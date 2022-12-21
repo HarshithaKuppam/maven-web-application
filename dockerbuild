@@ -41,9 +41,13 @@ node{
     
     stage('Deploy app in dev k8 cluster'){
     
-      sh 'kubectl config use-context devcluster'
-      sh 'kubectl config current-context'
-      sh 'kubectl apply -f  mavenwebappdeployment.yaml'
+      withKubeCredentials(kubectlCredentials: [[clusterName: 'EKS_Cluster_One', contextName: 'clusterone', credentialsId: 'KubeConfigFile', serverUrl: 'https://659F50812BCADA7D96733A9194707226.gr7.eu-west-1.eks.amazonaws.com']]) 
+                  {
+                  sh "kubectl apply -f mavenwebappdeployment.yaml"
+                 
+                  }
+
+            }
 
     }
     
