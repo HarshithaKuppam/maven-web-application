@@ -37,7 +37,7 @@ node{
     
     stage('Deploy app in k8 cluster'){
         
-        
-        sh " kubectl apply -f mavenwebappdeployment.yaml"
+        sh "helm upgrade --install demoapp
+       # sh " kubectl apply -f mavenwebappdeployment.yaml"
     }
 } //node closing
