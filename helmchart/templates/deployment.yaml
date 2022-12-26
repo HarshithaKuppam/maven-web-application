@@ -18,7 +18,7 @@ spec:
       containers:
       - name: mavenwebappcontainer
         #image: kuppamdocker/maven-web-application:#pomversion
-        image: {{ .Values.image.repository }}:{{ .values.image.tag }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         ports:
         - containerPort: {{ .Values.container.port }}
         readinessProbe:
