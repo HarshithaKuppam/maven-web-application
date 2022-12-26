@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploymentname }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Values.label }}
+  template:
+    metadata:
+      name: mavenwebapppod
+      labels:
+        app: {{ .Values.label }}
+    spec:
+      containers:
+      - name: mavenwebappcontainer
+        image: kuppamdocker/maven-web-application:#pomversion
+        #image: {{ .Values.image.repository }}:{{ .values.image.tag }}
+        ports:
+        - containerPort: {{ .Values.container.port }}
+        readinessProbe:
+           httpGet:
+              path: /maven-web-application
+              port: http
+              periodSeconds: 10
+              initialDelaySeconds: 60
+        livenessProbe:
+           httpGet:
+              path: /maven-web-application
+              port: http
+              periodSeconds: 10
+              initialDelaySeconds: 60
