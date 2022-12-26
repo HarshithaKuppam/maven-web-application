@@ -1,0 +1,8 @@
+deployment:
+   name: mavenwebappdeployment
+replicaCount: 1
+label: mavenwebapp
+image:
+  repository: kuppamdocker/maven-web-application
+  tag: 4.0.1-SNAPSHOT
+  pullPolicy: IfNotPresent
