@@ -4,7 +4,7 @@ replicaCount: 1
 label: mavenwebapp
 image:
   repository: kuppamdocker/maven-web-application
-  tag: 4.0.1-SNAPSHOT
+  tag: latest
   pullPolicy: IfNotPresent
 service:
   name: mavenwebappsvc
