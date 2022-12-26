@@ -6,3 +6,8 @@ image:
   repository: kuppamdocker/maven-web-application
   tag: 4.0.1-SNAPSHOT
   pullPolicy: IfNotPresent
+service:
+  name: mavenwebappsvc
+  port: 80
+  targetPort: 8080
+  type: LoadBalancer
