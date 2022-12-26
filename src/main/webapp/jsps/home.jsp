@@ -9,7 +9,7 @@
 </head>
 </head>
 <body>
-<h1 align="center">Welcome to LTI. Helm Charts Demo</h1>
+<h1 align="center">Welcome to LTI. Helm Charts - EKS Demo</h1>
 <h1 align="center"> Bangalore, WhiteField, Karnataka , 560066.</h1>
 <hr>
 <br>
