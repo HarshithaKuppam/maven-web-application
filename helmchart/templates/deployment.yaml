@@ -21,15 +21,3 @@ spec:
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         ports:
         - containerPort: {{ .Values.container.port }}
-        readinessProbe:
-           httpGet:
-              path: /maven-web-application
-              port: http
-              periodSeconds: 10
-              initialDelaySeconds: 60
-        livenessProbe:
-           httpGet:
-              path: /maven-web-application
-              port: http
-              periodSeconds: 10
-              initialDelaySeconds: 60
