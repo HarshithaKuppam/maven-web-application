@@ -39,7 +39,7 @@ node{
     
     stage('Deploy app in k8 cluster'){
         
-      sh "kubectl apply -f mavenwebappdeployment.yaml"
+      sh "kubectl apply -f mavenwebapp/"
         
     }
     } // node closing
