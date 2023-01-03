@@ -15,11 +15,30 @@ spec:
       labels:
         app: mavenwebapp
     spec:
+      serviceAccountName: mavenwebapp
       containers:
       - name: mavenwebappcontainer
         image: kuppamdocker/maven-web-application:#pomversion
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: my-api-token
+          mountPath: /mnt/api-token
+          readOnly: true
+        env:
+        - name: API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: api-token
+              key: SECRET_TOKEN
+      volumes:
+      - name: my-api-token
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: aws-secrets
+           
 ---
 apiVersion: v1
 kind: Service
