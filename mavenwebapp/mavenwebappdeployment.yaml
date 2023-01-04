@@ -23,7 +23,7 @@ spec:
         - containerPort: 8080
         volumeMounts:
         - name: mysecret
-          mountPath: "/mnt/secrets-store"
+          mountPath: "/mnt/secrets"
           readOnly: true
         env:
         - name: SECRET_USERNAME
