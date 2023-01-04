@@ -22,17 +22,17 @@ spec:
         ports:
         - containerPort: 8080
         volumeMounts:
-        - name: my-api-token
-          mountPath: /mnt/api-token
+        - name: mysecret
+          mountPath: "/mnt/secrets-store"
           readOnly: true
         env:
-        - name: API_TOKEN
+        - name: SECRET_USERNAME
           valueFrom:
             secretKeyRef:
-              name: api-token
-              key: SECRET_TOKEN
+              name: ASCPEKSSecret
+              key: username
       volumes:
-      - name: my-api-token
+      - name: mysecret
         csi:
           driver: secrets-store.csi.k8s.io
           readOnly: true
