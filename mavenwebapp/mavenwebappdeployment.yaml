@@ -25,17 +25,17 @@ spec:
         - name: mysecret
           mountPath: "/mnt/secrets"
           readOnly: true
-        #env:
-        #- name: SECRET_USERNAME
-         # valueFrom:
-          #  secretKeyRef:
-           #   name: creds
-            #  key: username
-        #- name: SECRET_PASSWORD
-         # valueFrom:
-          #  secretKeyRef:
-           #   name: creds
-            #  key: password
+        env:
+        - name: SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: creds
+              key: username
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: creds
+              key: password
       volumes:
       - name: mysecret
         csi:
