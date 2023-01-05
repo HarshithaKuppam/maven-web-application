@@ -26,7 +26,7 @@ spec:
           mountPath: "/mnt/secrets"
           readOnly: true
         env:
-        - name: SECRET_PASSWORD
+        - name: password    #SECRET_PASSWORD
           valueFrom:
             secretKeyRef:
               name: creds1
