@@ -37,7 +37,7 @@ spec:
           driver: secrets-store.csi.k8s.io
           readOnly: true
           volumeAttributes:
-            secretProviderClass: aws-secret
+            secretProviderClass: creds1
            
 ---
 apiVersion: v1
