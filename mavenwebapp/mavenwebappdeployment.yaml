@@ -26,10 +26,10 @@ spec:
           mountPath: "/mnt/secrets"
           readOnly: true
         env:
-        - name: username
+        - name: password
           valueFrom:
             secretKeyRef:
-              name: creds1
+              name: test-secret
               key: password
       volumes:
       - name: mysecret
