@@ -49,10 +49,10 @@ spec:
         - name: username
           valueFrom:
             secretKeyRef:
-              name: eks-test-secret 
+              name: test-secret-latest 
               key: username
         - name: password
           valueFrom:
             secretKeyRef:
-              name: eks-test-secret
+              name: test-secret-latest
               key: password
