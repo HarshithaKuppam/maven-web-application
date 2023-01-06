@@ -17,7 +17,7 @@ spec:
       labels:
         app: mavenwebapp
     spec:
-      serviceAccountName: mavenwebapp
+      serviceAccountName: eks-deployment-sa
       containers:
       - name: mavenwebappcontainer
         image: kuppamdocker/maven-web-application:#pomversion
