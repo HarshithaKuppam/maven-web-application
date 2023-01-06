@@ -1,7 +1,9 @@
-piVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mavenwebappdeployment
+  annotations:
+     secret.reloader.stakater.com/reload: "test-secret-latest"
 spec:
   replicas: 1
   strategy:
@@ -12,8 +14,6 @@ spec:
   template:
     metadata:
       name: mavenwebapppod
-      annotations:
-        secret.reloader.stakater.com/reload: "test-secret-latest"
       labels:
         app: mavenwebapp
     spec:
@@ -25,21 +25,26 @@ spec:
         - containerPort: 8080
         volumeMounts:
         - name: mysecret
-          mountPath: "/mnt/secrets"
+          mountPath: "/mnt/secrets-store"
           readOnly: true
         env:
+        - name: username
+          valueFrom:
+            secretKeyRef:
+              name: test-secret-latest
+              key: username
         - name: password
           valueFrom:
             secretKeyRef:
-              name: creds1
+              name: test-secret-latest
               key: password
       volumes:
-      - name: mysecret
+      - name: secrets-store-inline
         csi:
           driver: secrets-store.csi.k8s.io
           readOnly: true
           volumeAttributes:
-            secretProviderClass: aws-secret
+            secretProviderClass: "eks-test-secret"
            
 ---
 apiVersion: v1
