@@ -16,6 +16,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
+  annotations:
+    secret.reloader.stakater.com/reload: "test-secret-latest"
   labels:
     app: nginx
 spec:
