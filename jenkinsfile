@@ -33,7 +33,7 @@ node{
     
    stage('Replacing tag in manifest file'){
         
-        sh " sed -i 's/#pomversion/${pomversion}/' mavenwebapp-test/deployment.yaml.yaml"
+        sh " sed -i 's/#pomversion/${pomversion}/' mavenwebapp-test/deployment.yaml"
         
     }
     
