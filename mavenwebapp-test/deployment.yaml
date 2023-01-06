@@ -20,7 +20,7 @@ spec:
       serviceAccountName: eks-deployment-sa
       containers:
       - name: mavenwebappcontainer
-        image: kuppamdocker/maven-web-application:#pomversion
+        image: kuppamdocker/maven-web-application:4.0.4-SNAPSHOT
         ports:
         - containerPort: 8080
         volumeMounts:
