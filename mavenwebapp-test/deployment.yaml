@@ -1,0 +1,55 @@
+piVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mavenwebappdeployment
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mavenwebapp
+  template:
+    metadata:
+      name: mavenwebapppod
+      annotations:
+        secret.reloader.stakater.com/reload: "test-secret-latest"
+      labels:
+        app: mavenwebapp
+    spec:
+      serviceAccountName: mavenwebapp
+      containers:
+      - name: mavenwebappcontainer
+        image: kuppamdocker/maven-web-application:#pomversion
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: mysecret
+          mountPath: "/mnt/secrets"
+          readOnly: true
+        env:
+        - name: password
+          valueFrom:
+            secretKeyRef:
+              name: creds1
+              key: password
+      volumes:
+      - name: mysecret
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: aws-secret
+           
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mavenwebappsvc
+spec:
+  type: LoadBalancer
+  selector:
+    app: mavenwebapp
+  ports:
+  - port: 80
+    targetPort: 8080
