@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: mavenwebappdeployment
   annotations:
-     secret.reloader.stakater.com/reload: "test-secret-latest"
+     secret.reloader.stakater.com/reload: "test-secret-new"
 spec:
   replicas: 1
   strategy:
@@ -31,12 +31,12 @@ spec:
         - name: username
           valueFrom:
             secretKeyRef:
-              name: test-secret-latest
+              name: test-secret-new
               key: username
         - name: password
           valueFrom:
             secretKeyRef:
-              name: test-secret-latest
+              name: test-secret-new
               key: password
       volumes:
       - name: secrets-store-inline
