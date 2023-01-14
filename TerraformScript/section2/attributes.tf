@@ -1,0 +1,24 @@
+provider "aws" {
+
+  region     = "eu-west-1"
+  access_key = "AKIAVDDZZW5ROFKZNOI4"
+  secret_key = "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"
+}
+
+
+resource "aws_eip" "lb" {
+  vpc      = true
+}
+
+
+output "eip" {
+  value = aws_eip.lb
+}
+
+resource "aws_s3_bucket" "mys3" {
+  bucket = "harshi-attribute-demo-001"
+}
+
+
+output "mys3bucket" {
+  value = aws_s3_bucket.mys3.bucket_domain_name
