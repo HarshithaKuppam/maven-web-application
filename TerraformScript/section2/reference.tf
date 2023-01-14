@@ -7,7 +7,7 @@ secret_key = ""
 
 resource "aws_instance" "AWSEC2Instance" {
 
-    ami = "ami-01dfb24743affc0fc"
+    ami = "ami-0f9d9a251c1a44858"
     instance_type = "t2.micro"
     key_name = "terraform"
     tags = {
