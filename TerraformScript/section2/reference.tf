@@ -24,4 +24,15 @@ resource "aws_eip_association" "eip_assoc" {
   allocation_id = aws_eip.lb.id
 }
 
+resource "aws_security_group" "allow_tls" {
+  name        = "security-group-one"
+
+  ingress {
+    description      = "TLS from VPC"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = [aws_eip.lb.public_ip/32]
+ 
+  }
 
