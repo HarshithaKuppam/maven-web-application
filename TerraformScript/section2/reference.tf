@@ -1,8 +1,8 @@
 provider "aws"{
 
 region = "eu-west-1"
-access_key = "AKIAVDDZZW5ROFKZNOI4"
-secret_key = "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"
+access_key = ""
+secret_key = ""
 }
 
 resource "aws_instance" "AWSEC2Instance" {
