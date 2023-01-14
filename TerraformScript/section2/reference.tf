@@ -36,4 +36,5 @@ resource "aws_security_group" "allow_tls" {
     #cidr_blocks      = [aws_eip.lb.public_ip/32]
  
   }
+}
 
