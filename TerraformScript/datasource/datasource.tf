@@ -8,7 +8,7 @@ provider "aws" {
 data "aws_ami" "app_ami"{
 
 most_recent = true
-owners = ["amazon"]
+owners = ["amazon"]  #it look for official ami from amazon...if u keep ["self"] then it will consider our own ami in our aws account
 
 filter{
 
